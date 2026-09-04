@@ -4,44 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Hub</title>
+    <title>F1 HUB - O Mundo da Fórmula 1</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS Principal -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+    <!-- Header / Nav -->
     <header class="header">
-        <div class="container">
+        <div class="container header-container">
 
             <div class="logo">
                 <a href="#">
-                    <img
-                        src="assets/logos/f1-logo.png"
-                        alt="F1"
-                    >
-                    <span>HUB</span>
+                    <img src="assets/logos/f1-logo.png" alt="F1 Logo" class="f1-logo-img" onerror="this.style.display='none'">
+                    <span class="logo-text">F1 <span>HUB</span></span>
                 </a>
             </div>
 
-            <nav class="navbar">
-                <a href="#" class="active">Início</a>
-                <a href="#">Pilotos</a>
-                <a href="#">Equipes</a>
-                <a href="#">Ranking</a>
-                <a href="#">Estatísticas</a>
-                <a href="#">Notícias</a>
+            <nav class="navbar" id="navbar">
+                <a href="#inicio" class="active">INÍCIO</a>
+                <a href="#pilotos">PILOTOS</a>
+                <a href="#equipes">EQUIPES</a>
+                <a href="#ranking">RANKING</a>
+                <a href="#estatisticas">ESTATÍSTICAS</a>
+                <a href="#noticias">NOTÍCIAS</a>
             </nav>
 
             <div class="header-actions">
-                <button class="search-button" aria-label="Pesquisar">
-                    <img src="assets/icons/search.svg" alt="">
+                <button class="icon-btn" id="btn-theme" aria-label="Alternar Tema">
+                    <i data-lucide="moon"></i>
                 </button>
-
-                <button class="login-button">
-                    Entrar
+                <button class="icon-btn" id="btn-user" aria-label="Perfil">
+                    <i data-lucide="user"></i>
+                </button>
+                <button class="icon-btn btn-menu-mobile" id="btn-menu" aria-label="Abrir Menu">
+                    <i data-lucide="menu"></i>
                 </button>
             </div>
 
@@ -50,54 +57,271 @@
 
     <main>
 
-        <section class="hero">
+        <!-- SEÇÃO HERO -->
+        <section class="hero" id="inicio">
+            
+            <div class="hero-bg">
+                <img src="assets/images/car.png" alt="Carro F1" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1600&auto=format&fit=crop'">
+                <div class="hero-overlay"></div>
+            </div>
+
             <div class="container">
-
                 <div class="hero-content">
+                    <span class="hero-tag"><i data-lucide="trophy"></i> TEMPORADA <span id="hero-season-year">2026</span></span>
+                    
+                    <h1 class="hero-title">
+                        O MUNDO DA
+                        <span>FÓRMULA 1</span>
+                    </h1>
 
-                    <div class="hero-text">
+                    <p class="hero-subtitle">
+                        Explore pilotos, equipes, estatísticas e fique por dentro de tudo o que acontece na principal categoria do automobilismo mundial.
+                    </p>
 
-                        <h1>
-                            O MUNDO DA
-                            <span>FÓRMULA 1</span>
-                        </h1>
-
-                        <p>
-                            Explore pilotos, equipes, estatísticas
-                            e fique por dentro de tudo que acontece
-                            na principal categoria do automobilismo.
-                        </p>
-
-                        <a href="#" class="btn-primary">
-                            EXPLORAR PILOTOS →
+                    <div class="hero-actions">
+                        <a href="#pilotos" class="btn-primary">
+                            EXPLORAR PILOTOS <i data-lucide="arrow-right"></i>
                         </a>
-
                     </div>
 
-                    <div class="hero-image"></div>
+                    <form class="search-box" id="form-busca">
+                        <div class="search-input-wrapper">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="input-busca" placeholder="Pesquisar piloto, equipe ou corrida..." autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-search">BUSCAR</button>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Bento Grid Principal (Tipo de Layout que e separado em blocos, igual um bento japones)-->
+        <section class="dashboard-section">
+            <div class="container">
+                <div class="bento-grid">
+
+                    <!-- CARD 1: PILOTOS EM DESTAQUE -->
+                    <div class="bento-card card-destaque" id="pilotos">
+                        <div class="card-header">
+                            <h2 class="card-title">PILOTOS EM DESTAQUE</h2>
+                            <a href="#" class="card-link">VER TODOS</a>
+                        </div>
+
+                        <div class="pilotos-cards-wrapper" id="container-pilotos">
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card"></div>
+                            <div class="skeleton skeleton-card"></div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: RANKING DE PILOTOS -->
+                    <div class="bento-card card-ranking" id="ranking">
+                        <div class="card-header">
+                            <h2 class="card-title">RANKING DE PILOTOS</h2>
+                            <a href="#" class="card-link">VER RANKING</a>
+                        </div>
+
+                        <div class="ranking-list" id="container-ranking">
+                            <div class="skeleton skeleton-row"></div>
+                            <div class="skeleton skeleton-row"></div>
+                            <div class="skeleton skeleton-row"></div>
+                            <div class="skeleton skeleton-row"></div>
+                            <div class="skeleton skeleton-row"></div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: EQUIPES -->
+                    <div class="bento-card card-equipes" id="equipes">
+                        <div class="card-header">
+                            <h2 class="card-title">EQUIPES</h2>
+                            <a href="#" class="card-link">VER TODAS</a>
+                        </div>
+
+                        <div class="teams-grid" id="container-equipes">
+                            <div class="skeleton skeleton-box"></div>
+                            <div class="skeleton skeleton-box"></div>
+                            <div class="skeleton skeleton-box"></div>
+                            <div class="skeleton skeleton-box"></div>
+                            <div class="skeleton skeleton-box"></div>
+                            <div class="skeleton skeleton-box"></div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4: PRÓXIMA CORRIDA -->
+                    <div class="bento-card card-corrida" id="proxima-corrida">
+                        <div class="card-header">
+                            <h2 class="card-title">PRÓXIMA CORRIDA</h2>
+                        </div>
+
+                        <div class="corrida-content" id="container-corrida">
+                            <div class="track-info">
+                                <div class="track-svg-wrapper">
+                                    <svg viewBox="0 0 100 60" class="monaco-track-svg">
+                                        <path d="M10,20 C20,5 40,5 50,15 C60,25 80,10 90,25 C100,40 80,55 60,50 C40,45 30,55 15,45 Z" fill="none" stroke="#e10600" stroke-width="3" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div class="race-details">
+                                    <h3 class="gp-name" id="race-gp-name">🇲🇨 GP DE MÔNACO</h3>
+                                    <p class="circuit-name" id="race-circuit-name">Circuito de Monaco</p>
+                                    <span class="race-dates" id="race-date"><i data-lucide="calendar"></i> 26 - 28 MAI 2026</span>
+                                </div>
+                            </div>
+
+                            <div class="countdown-container">
+                                <span class="countdown-label">COMEÇA EM</span>
+                                <div class="timer-blocks">
+                                    <div class="time-card"><span id="timer-days">00</span><label>DIAS</label></div>
+                                    <div class="time-card"><span id="timer-hours">00</span><label>HORAS</label></div>
+                                    <div class="time-card"><span id="timer-mins">00</span><label>MIN</label></div>
+                                    <div class="time-card"><span id="timer-secs">00</span><label>SEG</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 5: ÚLTIMAS NOTÍCIAS -->
+                    <div class="bento-card card-noticias" id="noticias">
+                        <div class="card-header">
+                            <h2 class="card-title">ÚLTIMAS NOTÍCIAS</h2>
+                            <a href="#" class="card-link">VER TODAS</a>
+                        </div>
+
+                        <div class="news-list" id="container-noticias">
+                            <div class="skeleton skeleton-news"></div>
+                        </div>
+                    </div>
 
                 </div>
-
-                <div class="search-box">
-
-                    <input
-                        type="text"
-                        placeholder="Pesquisar piloto, equipe ou corrida..."
-                    >
-
-                    <button>
-                        BUSCAR
-                    </button>
-
-                </div>
-
             </div>
         </section>
 
     </main>
 
-    <script src="js/script.js"></script>
+    <!-- Script da Aplicação -->
+    <script src="js/app.js"></script>
 
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        const btnMenu = document.getElementById('btn-menu');
+        const navbar = document.getElementById('navbar');
+
+        if (btnMenu && navbar) {
+            btnMenu.addEventListener('click', () => {
+                navbar.classList.toggle('open');
+            });
+        }
+    </script>
+    <script>
+        // Pedi dados simulados para uma IA
+        // Dados simulados para preencher o dashboard
+        const MOCK_DATA = {
+            pilotos: [
+                { rank: 1, nome: "Max", sobrenome: "Verstappen", equipe: "Red Bull Racing", pts: "3.625 PTS", img: "https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png" },
+                { rank: 2, nome: "Lewis", sobrenome: "Hamilton", equipe: "Ferrari", pts: "3.045 PTS", img: "https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png" },
+                { rank: 3, nome: "Charles", sobrenome: "Leclerc", equipe: "Ferrari", pts: "2.673 PTS", img: "https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png" }
+            ],
+            ranking: [
+                { rank: 1, nome: "Max Verstappen", equipe: "Red Bull Racing", icon: "🐂", pts: "3.625" },
+                { rank: 2, nome: "Lewis Hamilton", equipe: "Ferrari", icon: "🐎", pts: "3.045" },
+                { rank: 3, nome: "Charles Leclerc", equipe: "Ferrari", icon: "🐎", pts: "2.673" },
+                { rank: 4, nome: "Lando Norris", equipe: "McLaren", icon: "🏎️", pts: "2.493" },
+                { rank: 5, nome: "Oscar Piastri", equipe: "McLaren", icon: "🏎️", pts: "2.150" }
+            ],
+            equipes: [
+                { nome: "Red Bull", sub: "RACING", pos: "1º no Ranking" },
+                { nome: "Ferrari", sub: "", pos: "2º no Ranking" },
+                { nome: "McLaren", sub: "", pos: "3º no Ranking" },
+                { nome: "Mercedes", sub: "", pos: "4º no Ranking" },
+                { nome: "Aston Martin", sub: "", pos: "5º no Ranking" },
+                { nome: "Alpine", sub: "", pos: "6º no Ranking" }
+            ],
+            noticias: {
+                titulo: "Verstappen domina os treinos para a próxima etapa",
+                resumo: "Piloto mostra ritmo forte na preparação e lidera a tabela de tempos.",
+                tempo: "2 HORAS ATRÁS",
+                img: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=400&auto=format&fit=crop"
+            }
+        };
+
+        function carregarDashboard() {
+            // Renderiza Pilotos
+            const containerPilotos = document.getElementById('container-pilotos');
+            if (containerPilotos) {
+                containerPilotos.innerHTML = MOCK_DATA.pilotos.map(p => `
+                    <div class="driver-card">
+                        <span class="rank-badge rank-${p.rank}">${p.rank}</span>
+                        <div class="driver-img-box">
+                            <img src="${p.img}" alt="${p.nome} ${p.sobrenome}">
+                        </div>
+                        <div class="driver-card-info">
+                            <h3 class="driver-name">${p.nome} <span>${p.sobrenome}</span></h3>
+                            <span class="driver-team">${p.equipe}</span>
+                            <div class="driver-pts">${p.pts}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Renderiza Ranking
+            const containerRanking = document.getElementById('container-ranking');
+            if (containerRanking) {
+                containerRanking.innerHTML = MOCK_DATA.ranking.map(r => `
+                    <div class="ranking-item">
+                        <span class="rank-num">${r.rank}</span>
+                        <div class="rank-driver-details">
+                            <strong class="driver-full-name">${r.nome}</strong>
+                            <span class="driver-team-sub">${r.equipe}</span>
+                        </div>
+                        <span class="team-mini-icon">${r.icon}</span>
+                        <span class="rank-score">${r.pts}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Renderiza Equipes
+            const containerEquipes = document.getElementById('container-equipes');
+            if (containerEquipes) {
+                containerEquipes.innerHTML = MOCK_DATA.equipes.map(e => `
+                    <div class="team-box">
+                        <div class="team-logo-title">${e.nome} ${e.sub ? `<span>${e.sub}</span>` : ''}</div>
+                        <span class="team-rank">${e.pos}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Renderiza Notícia
+            const containerNoticias = document.getElementById('container-noticias');
+            if (containerNoticias) {
+                const n = MOCK_DATA.noticias;
+                containerNoticias.innerHTML = `
+                    <div class="news-item">
+                        <div class="news-thumb">
+                            <img src="${n.img}" alt="${n.titulo}">
+                        </div>
+                        <div class="news-info">
+                            <h3>${n.titulo}</h3>
+                            <p>${n.resumo}</p>
+                            <span class="news-time">${n.tempo}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Atualiza ícones Lucide
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Executa após o carregamento
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(carregarDashboard, 300);
+        });
+    </script>
 </body>
 
 </html>
