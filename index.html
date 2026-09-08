@@ -38,6 +38,7 @@
                 <a href="#ranking">RANKING</a>
                 <a href="#estatisticas">ESTATÍSTICAS</a>
                 <a href="#noticias">NOTÍCIAS</a>
+                <a href="#gerenciar">GERENCIAR</a>
             </nav>
 
             <div class="header-actions">
@@ -234,6 +235,30 @@
             </div>
         </section>
 
+        <section class="management-section" id="gerenciar">
+            <div class="container">
+                <div class="management-card">
+                    <div>
+                        <span class="management-kicker">PAINEL DA API</span>
+                        <h2>GERENCIAR CONTEÚDO</h2>
+                        <p>Adicione pilotos, itens do ranking, equipes ou notícias. Use os botões “Excluir” nos cards para remover um registro.</p>
+                    </div>
+                    <form id="form-api" class="api-form">
+                        <label>Tipo de conteúdo
+                            <select id="api-recurso" name="recurso">
+                                <option value="piloto">Piloto em destaque</option>
+                                <option value="ranking">Item do ranking</option>
+                                <option value="equipe">Equipe</option>
+                                <option value="noticia">Notícia</option>
+                            </select>
+                        </label>
+                        <div id="api-fields" class="api-fields"></div>
+                        <button type="submit" class="btn-primary">ADICIONAR</button>
+                        <p id="api-status" class="api-status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Lib de Ícones (Lucide) -->
@@ -305,7 +330,9 @@
 
         // Executa após o carregamento
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(carregarDashboard, 300);
+            if (typeof carregarDashboard === 'function') {
+                setTimeout(carregarDashboard, 300);
+            }
             iniciarCarrossel();
         });
     </script>

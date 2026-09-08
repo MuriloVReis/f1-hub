@@ -722,6 +722,26 @@ svg, i[data-lucide] {
     grid-column: 1 / -1;
 }
 
+/* PAINEL DE GERENCIAMENTO DA API */
+.management-section { padding: 0 0 4rem; }
+.management-card { display: grid; grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr); gap: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #15181e, #0d0f13); border: 1px solid var(--border-card); border-left: 4px solid var(--red); border-radius: 10px; }
+.management-kicker { color: var(--red); font: 800 0.7rem var(--font-title); letter-spacing: 1px; }
+.management-card h2 { margin: 0.3rem 0 0.65rem; font: 800 1.2rem var(--font-title); }
+.management-card p { color: var(--gray-text); font-size: 0.85rem; }
+.api-form, .api-fields { display: grid; gap: 0.75rem; }
+.api-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.api-form label { display: grid; gap: 0.35rem; color: #c7cad0; font-size: 0.75rem; font-weight: 700; }
+.api-form input, .api-form select { min-width: 0; padding: 0.7rem; color: var(--white); background: #090b0f; border: 1px solid var(--border-card); border-radius: 5px; }
+.api-form input:focus, .api-form select:focus { border-color: var(--red); }
+.api-form .btn-primary { border: 0; cursor: pointer; }
+.btn-delete { margin-top: 0.7rem; padding: 0.32rem 0.5rem; color: #ff8b87; background: transparent; border: 1px solid #6e2929; border-radius: 4px; font: 800 0.62rem var(--font-title); text-transform: uppercase; cursor: pointer; }
+.btn-delete:hover { color: var(--white); background: var(--red); border-color: var(--red); }
+.ranking-item .btn-delete { margin: 0 0 0 0.7rem; }
+.news-item .btn-delete { align-self: flex-end; margin-left: auto; }
+.api-status { min-height: 1.15rem; }
+.api-status.is-success { color: #78d99b; }
+.api-status.is-error { color: #ff7771; }
+
 /*CARROSSEL DE DESTAQUES*/
 .carrossel-destaques {
     background-color: var(--black-bg);
@@ -917,6 +937,9 @@ svg, i[data-lucide] {
         width: 100%;
         height: 160px;
     }
+
+    .management-card { grid-template-columns: 1fr; gap: 1.25rem; }
+    .api-fields { grid-template-columns: 1fr; }
 }
 
 /* Responsividade Carrossel */
