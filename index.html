@@ -236,14 +236,11 @@
 
     </main>
 
-    <!-- Script da Aplicação -->
-    <script src="js/app.js"></script>
+    <!-- Lib de Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Script de Interface (Menu Mobile) -->
     <script>
-        if (window.lucide) {
-            lucide.createIcons();
-        }
-
         const btnMenu = document.getElementById('btn-menu');
         const navbar = document.getElementById('navbar');
 
@@ -253,101 +250,6 @@
             });
         }
     </script>
-    <script>
-        // Pedi dados simulados para uma IA
-        // Dados simulados para preencher o dashboard
-        const MOCK_DATA = {
-            pilotos: [
-                { rank: 1, nome: "Max", sobrenome: "Verstappen", equipe: "Red Bull Racing", pts: "3.625 PTS", img: "https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png" },
-                { rank: 2, nome: "Lewis", sobrenome: "Hamilton", equipe: "Ferrari", pts: "3.045 PTS", img: "https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png" },
-                { rank: 3, nome: "Charles", sobrenome: "Leclerc", equipe: "Ferrari", pts: "2.673 PTS", img: "https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png" }
-            ],
-            ranking: [
-                { rank: 1, nome: "Max Verstappen", equipe: "Red Bull Racing", icon: "🐂", pts: "3.625" },
-                { rank: 2, nome: "Lewis Hamilton", equipe: "Ferrari", icon: "🐎", pts: "3.045" },
-                { rank: 3, nome: "Charles Leclerc", equipe: "Ferrari", icon: "🐎", pts: "2.673" },
-                { rank: 4, nome: "Lando Norris", equipe: "McLaren", icon: "🏎️", pts: "2.493" },
-                { rank: 5, nome: "Oscar Piastri", equipe: "McLaren", icon: "🏎️", pts: "2.150" }
-            ],
-            equipes: [
-                { nome: "Red Bull", sub: "RACING", pos: "1º no Ranking" },
-                { nome: "Ferrari", sub: "", pos: "2º no Ranking" },
-                { nome: "McLaren", sub: "", pos: "3º no Ranking" },
-                { nome: "Mercedes", sub: "", pos: "4º no Ranking" },
-                { nome: "Aston Martin", sub: "", pos: "5º no Ranking" },
-                { nome: "Alpine", sub: "", pos: "6º no Ranking" }
-            ],
-            noticias: {
-                titulo: "Verstappen domina os treinos para a próxima etapa",
-                resumo: "Piloto mostra ritmo forte na preparação e lidera a tabela de tempos.",
-                tempo: "2 HORAS ATRÁS",
-                img: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=400&auto=format&fit=crop"
-            }
-        };
-
-        function carregarDashboard() {
-            // Renderiza Pilotos
-            const containerPilotos = document.getElementById('container-pilotos');
-            if (containerPilotos) {
-                containerPilotos.innerHTML = MOCK_DATA.pilotos.map(p => `
-                    <div class="driver-card">
-                        <span class="rank-badge rank-${p.rank}">${p.rank}</span>
-                        <div class="driver-img-box">
-                            <img src="${p.img}" alt="${p.nome} ${p.sobrenome}">
-                        </div>
-                        <div class="driver-card-info">
-                            <h3 class="driver-name">${p.nome} <span>${p.sobrenome}</span></h3>
-                            <span class="driver-team">${p.equipe}</span>
-                            <div class="driver-pts">${p.pts}</div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            // Renderiza Ranking
-            const containerRanking = document.getElementById('container-ranking');
-            if (containerRanking) {
-                containerRanking.innerHTML = MOCK_DATA.ranking.map(r => `
-                    <div class="ranking-item">
-                        <span class="rank-num">${r.rank}</span>
-                        <div class="rank-driver-details">
-                            <strong class="driver-full-name">${r.nome}</strong>
-                            <span class="driver-team-sub">${r.equipe}</span>
-                        </div>
-                        <span class="team-mini-icon">${r.icon}</span>
-                        <span class="rank-score">${r.pts}</span>
-                    </div>
-                `).join('');
-            }
-
-            // Renderiza Equipes
-            const containerEquipes = document.getElementById('container-equipes');
-            if (containerEquipes) {
-                containerEquipes.innerHTML = MOCK_DATA.equipes.map(e => `
-                    <div class="team-box">
-                        <div class="team-logo-title">${e.nome} ${e.sub ? `<span>${e.sub}</span>` : ''}</div>
-                        <span class="team-rank">${e.pos}</span>
-                    </div>
-                `).join('');
-            }
-
-            // Renderiza Notícia
-            const containerNoticias = document.getElementById('container-noticias');
-            if (containerNoticias) {
-                const n = MOCK_DATA.noticias;
-                containerNoticias.innerHTML = `
-                    <div class="news-item">
-                        <div class="news-thumb">
-                            <img src="${n.img}" alt="${n.titulo}">
-                        </div>
-                        <div class="news-info">
-                            <h3>${n.titulo}</h3>
-                            <p>${n.resumo}</p>
-                            <span class="news-time">${n.tempo}</span>
-                        </div>
-                    </div>
-                `;
-            }
 
             // Atualiza ícones Lucide
             if (window.lucide) {
@@ -407,6 +309,9 @@
             iniciarCarrossel();
         });
     </script>
+  
+    <!-- Script principal conectado à API -->
+    <script src="js/app.js"></script>
 </body>
 
 </html>
