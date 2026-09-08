@@ -96,6 +96,44 @@
 
         </section>
 
+        <section class="carrossel-destaques">
+            <div class="carrossel-container">
+                <div class="carrossel-trilha">
+                    
+                    <div class="slide">
+                        <div class="slide-conteudo">
+                            <img src="https://images.pexels.com/photos/29252129/pexels-photo-29252129.jpeg" alt="Carro de Kimi Antonelli ">
+                            <div class="slide-texto">
+                                <h2>DOMINÂNCIA DE ANTONELLI</h2>
+                                <p>Kimi ganha mais uma e aumenta distancia de Russel</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-conteudo">
+                            <img src="https://images.pexels.com/photos/34722736/pexels-photo-34722736.jpeg" alt="Carro Ferrari">
+                            <div class="slide-texto">
+                                <h2>ESCUDERIA ACERTA O AJUSTE</h2>
+                                <p>Após desastre do último GP, ferrari volta com força total em São Paulo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-conteudo">
+                            <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQJJMFNI6o7-o0Nv2acP3GW93hy0OgkU2qFFGIeA5djQ_y4cIw2t6m2Vh2NHtuUsImv2FmMSYH0Un5Vjp4" alt="Gabriel Bortoleto">
+                            <div class="slide-texto">
+                                <h2>BORTOLETO SURPREENDE</h2>
+                                <p>Após quali difícil, Bortoleto pontua com performance incrível</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Bento Grid Principal (Tipo de Layout que e separado em blocos, igual um bento japones)-->
         <section class="dashboard-section">
             <div class="container">
@@ -213,6 +251,65 @@
         }
     </script>
 
+            // Atualiza ícones Lucide
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Lógica do Carrossel Center-Peek
+        function iniciarCarrossel() {
+            const trilha = document.querySelector('.carrossel-trilha');
+            const slides = document.querySelectorAll('.slide');
+            const container = document.querySelector('.carrossel-container');
+            
+            if (!trilha || slides.length === 0) return;
+
+            let indiceAtual = 0;
+            let timerCarrossel;
+
+            function centralizarSlide() {
+                slides.forEach(slide => slide.classList.remove('ativo'));
+                slides[indiceAtual].classList.add('ativo');
+
+                const larguraContainer = container.clientWidth;
+                const larguraSlide = slides[0].clientWidth;
+                
+                const espacoLivreLateral = (larguraContainer - larguraSlide) / 2;
+                const deslocamento = espacoLivreLateral - (indiceAtual * larguraSlide);
+
+                trilha.style.transform = `translateX(${deslocamento}px)`;
+            }
+
+            function moverCarrossel() {
+                indiceAtual++;
+                if (indiceAtual >= slides.length) {
+                    indiceAtual = 0;
+                }
+                centralizarSlide();
+            }
+
+            function iniciarAutoPlay() {
+                timerCarrossel = setInterval(moverCarrossel, 5000);
+            }
+
+            function pausarAutoPlay() {
+                clearInterval(timerCarrossel);
+            }
+            centralizarSlide();
+            iniciarAutoPlay();
+            container.addEventListener('mouseenter', pausarAutoPlay);
+            container.addEventListener('mouseleave', iniciarAutoPlay);
+            window.addEventListener('resize', centralizarSlide);
+        }
+
+        // Executa após o carregamento
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(carregarDashboard, 300);
+            iniciarCarrossel();
+        });
+    </script>
+  
     <!-- Script principal conectado à API -->
     <script src="js/app.js"></script>
 </body>
