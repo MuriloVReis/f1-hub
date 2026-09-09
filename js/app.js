@@ -65,6 +65,39 @@ function inicializarBusca() {
     form.addEventListener('submit', e => { e.preventDefault(); carregarPilotos(input.value.trim()); document.getElementById('pilotos')?.scrollIntoView({ behavior: 'smooth' }); });
 }
 
+function iniciarContagemRegressivaMock() {
+    const elementos = {
+        dias: document.getElementById('timer-days'),
+        horas: document.getElementById('timer-hours'),
+        minutos: document.getElementById('timer-mins'),
+        segundos: document.getElementById('timer-secs')
+    };
+
+    if (Object.values(elementos).some(elemento => !elemento)) return;
+
+    // Data fictícia: cada vez que a página abre, a corrida fica a alguns dias de distância.
+    const inicio = Date.now();
+    const duracaoMock = (((3 * 24 + 7) * 60 + 24) * 60 + 48) * 1000;
+
+    function atualizar() {
+        let restante = Math.max(0, duracaoMock - (Date.now() - inicio));
+        const dias = Math.floor(restante / 86400000);
+        restante %= 86400000;
+        const horas = Math.floor(restante / 3600000);
+        restante %= 3600000;
+        const minutos = Math.floor(restante / 60000);
+        const segundos = Math.floor((restante % 60000) / 1000);
+
+        elementos.dias.textContent = String(dias).padStart(2, '0');
+        elementos.horas.textContent = String(horas).padStart(2, '0');
+        elementos.minutos.textContent = String(minutos).padStart(2, '0');
+        elementos.segundos.textContent = String(segundos).padStart(2, '0');
+    }
+
+    atualizar();
+    setInterval(atualizar, 1000);
+}
+
 function renderizarCamposFormulario() {
     const recurso = recursos[document.getElementById('api-recurso').value];
     document.getElementById('api-fields').innerHTML = recurso.campos.map(([nome, rotulo, tipo, obrigatorio]) => `<label>${rotulo}<input name="${nome}" type="${tipo}" ${obrigatorio ? 'required' : ''} ${nome === 'rank' ? 'min="1"' : ''}></label>`).join('');
@@ -100,5 +133,6 @@ function inicializarGerenciador() {
 document.addEventListener('DOMContentLoaded', async () => {
     await Promise.all([carregarPilotos(), carregarRanking(), carregarEquipes(), carregarNoticias()]);
     inicializarBusca(); inicializarGerenciador();
+    iniciarContagemRegressivaMock();
     if (window.lucide) lucide.createIcons();
 });
